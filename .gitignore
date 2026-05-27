@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+venv/
+ENV/
+*.egg-info/
+*.egg
+*.log
+*.sqlite3
+*.db
+# VS Code
+.vscode/
+# OS
+.DS_Store
+Thumbs.db
+# Others
+*.bak
+*.swp
+*.tmp
+# Node
+node_modules/
+# Jupyter
+.ipynb_checkpoints/
+# OneDrive
+*.lnk
+~$*
+

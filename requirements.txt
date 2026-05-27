@@ -1,0 +1,11 @@
+psutil
+sympy
+asyncio
+pafy
+flask
+disnake
+gtts
+pynacl
+aiohttp
+yt_dlp
+dotenv
