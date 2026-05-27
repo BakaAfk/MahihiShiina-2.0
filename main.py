@@ -1,32 +1,42 @@
 import disnake
 from disnake.ext import commands
+import importlib.util
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
-# khai báo client
+# Client setup
 client = commands.Bot(command_prefix='?', intents=disnake.Intents.all(), sync_commands_debug=True)
 load_dotenv()
 
-# Event khi bot sẵn sàng
+# Load cogs and events
 @client.event
 async def on_ready():
     print(f'We have logged in as {client.user}')
-    # thêm status cho bot
+    # Set bot presence
     await client.change_presence(activity=disnake.Activity(type=disnake.ActivityType.listening, name="Amane-kun's heart", large_image_url="https://i.imgur.com/TMRW6LD.jpeg"))
-#load commands
-def load_cogs():  
-    for filename in os.listdir('./cogs'):  
-        if filename.endswith('.py'):
-            client.load_extension(f'cogs.{filename[:-3]}')
-            
-#load events           
-def load_events():
-    for filename in os.listdir('./events'):
-        if filename.endswith('.py'):
-            client.load_extension(f'events.{filename[:-3]}')
-# Gọi 2 function load                
-load_cogs()
-load_events()
 
-# Token chạy bot
+def load_modules(folder_name: str):
+    base_path = Path(__file__).resolve().parent / folder_name
+    for file_path in base_path.rglob("*.py"):
+        if "__pycache__" in file_path.parts:
+            continue
+
+        module_name = f"{folder_name}.{file_path.stem}.{abs(hash(file_path))}"
+        spec = importlib.util.spec_from_file_location(module_name, file_path)
+        if not spec or not spec.loader:
+            print(f"Không thể load module: {file_path}")
+            continue
+
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+
+        if hasattr(module, "setup"):
+            module.setup(client)
+
+
+load_modules("cogs")
+load_modules("events")
+
+# Run the bot
 client.run(os.getenv('DISCORD_TOKEN'))

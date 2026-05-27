@@ -3,29 +3,60 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-*.env
-.env
-venv/
-ENV/
 *.egg-info/
 *.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+
+# Virtual environments
+.env
+*.env
+venv/
+ENV/
+.venv/
+
+# Build / packaging
+build/
+dist/
+site/
+
+# Logs and databases
 *.log
 *.sqlite3
 *.db
-# VS Code
+
+# Runtime data files
+server_config.json
+queue.txt
+loop.txt
+loop_queue.txt
+cogs/**/chuitruong.txt
+untitled:*.prompt.md
+
+# IDEs / editors
 .vscode/
-# OS
+.idea/
+*.iml
+
+# OS / file manager
 .DS_Store
 Thumbs.db
-# Others
+*.lnk
+~$*
+
+# Temporary files
 *.bak
 *.swp
 *.tmp
+
+# Notebooks
+.ipynb_checkpoints/
+
 # Node
 node_modules/
-# Jupyter
-.ipynb_checkpoints/
-# OneDrive
-*.lnk
-~$*
 

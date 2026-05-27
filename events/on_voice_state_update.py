@@ -1,6 +1,5 @@
 import disnake
 from disnake.ext import commands
-import asyncio
 
 
 class VoiceBotOut(commands.Cog):
@@ -9,30 +8,43 @@ class VoiceBotOut(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
 
+    async def _disconnect_if_channel_empty(self, guild: disnake.Guild, channel: disnake.VoiceChannel | None):
+        if channel is None:
+            return
+
+        voice_client = guild.voice_client
+        if not voice_client or voice_client.channel != channel:
+            return
+
+        non_bot_members = [member for member in channel.members if not member.bot]
+        if non_bot_members:
+            return
+
+        await voice_client.disconnect()
+
     @commands.Cog.listener()
-    async def on_voice_state_update(self, member: disnake.Member, 
-                                 before: disnake.VoiceState, 
-                                 after: disnake.VoiceState):
-        # Bỏ qua nếu không phải là sự kiện rời channel
+    async def on_voice_state_update(
+        self,
+        member: disnake.Member,
+        before: disnake.VoiceState,
+        after: disnake.VoiceState,
+    ):
         if before.channel == after.channel:
             return
 
-        # Xử lý khi bot rời channel
         if member.id == self.bot.user.id and after.channel is None:
-            await self.safe_disconnect(member.guild)
             return
 
-        # Xử lý khi thành viên rời channel
         if before.channel and not after.channel:
-            voice_client = member.guild.voice_client
-            
-            # Chỉ xử lý nếu bot đang trong voice channel
-            if voice_client and voice_client.channel == before.channel:
-                if await self.is_alone(before.channel):
-                    # Đợi timeout trước khi rời
-                    await asyncio.sleep(self.timeout)
-                    if await self.is_alone(before.channel):
-                        await self.safe_disconnect(member.guild)
+            await self._disconnect_if_channel_empty(member.guild, before.channel)
+            return
+
+        if before.channel and after.channel and before.channel != after.channel:
+            await self._disconnect_if_channel_empty(member.guild, before.channel)
+            return
+
+        if after.channel:
+            await self._disconnect_if_channel_empty(member.guild, after.channel)
     
 def setup(bot: commands.Bot):
     bot.add_cog(VoiceBotOut(bot)) 
