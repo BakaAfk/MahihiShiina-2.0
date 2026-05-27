@@ -12,7 +12,7 @@ class MessageEdit(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message_edit(self, before: disnake.Message, after: disnake.Message):
-        channel = self.bot.get_channel(config.LOG_CHANNEL_ID) # ID của channel log
+        channel = self.bot.get_channel(config.LOG_CHANNEL_ID)
         if not channel:
             return
         

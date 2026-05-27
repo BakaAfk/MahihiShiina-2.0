@@ -14,7 +14,7 @@ class Clear(commands.Cog):
     @commands.slash_command(description="Xóa tin nhắn")
     @commands.has_permissions(manage_messages=True)
     async def clear(self, inter: disnake.ApplicationCommandInteraction, amount: int, member: disnake.Member = None):
-        await inter.response.defer(with_message=True)
+        await inter.response.defer(ephemeral=True)
 
         def _check(message):
             if member:
@@ -32,7 +32,10 @@ class Clear(commands.Cog):
         else:
             deleted_messages = await inter.channel.purge(limit=amount+1)
 
-        await inter.edit_original_message(content=f"Đã xóa {len(deleted_messages)} tin nhắn.")
+        try:
+            await inter.edit_original_message(content=f"Đã xóa {len(deleted_messages)} tin nhắn.")
+        except disnake.NotFound:
+            await inter.followup.send(f"Đã xóa {len(deleted_messages)} tin nhắn.", ephemeral=True)
 
         # If the command is used in the "special" channel, send the deleted messages to the bot owner via DM
         if inter.channel.id == config.VENT_CHANNEL_ID:
@@ -62,9 +65,15 @@ class Clear(commands.Cog):
     @clear.error
     async def clear_error(self, inter: disnake.ApplicationCommandInteraction, error):
         if isinstance(error, commands.MissingPermissions):
-            await inter.response.send_message("Bạn không đủ quyền hạn để sử dụng lệnh này")
+            if inter.response.is_done():
+                await inter.followup.send("Bạn không đủ quyền hạn để sử dụng lệnh này", ephemeral=True)
+            else:
+                await inter.response.send_message("Bạn không đủ quyền hạn để sử dụng lệnh này", ephemeral=True)
         else:
-            await inter.response.send_message("Đã có lỗi xảy ra")
+            if inter.response.is_done():
+                await inter.followup.send("Đã có lỗi xảy ra", ephemeral=True)
+            else:
+                await inter.response.send_message("Đã có lỗi xảy ra", ephemeral=True)
 
 def setup(bot: commands.Bot):
     bot.add_cog(Clear(bot))
