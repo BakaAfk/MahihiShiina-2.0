@@ -50,4 +50,4 @@ class MemberCounter(commands.Cog):
 def setup(bot: commands.Bot):
     cog = MemberCounter(bot)
     bot.add_cog(cog)
-    cog.count_members.start()
+    # cog.count_members.start()
