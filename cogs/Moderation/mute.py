@@ -9,7 +9,7 @@ class MuteCommands(commands.Cog):
         self.bot = bot
 
     @commands.slash_command(description="Cấm chat")
-    @commands.has_permissions(manage_server=True)
+    @commands.has_permissions(mute_members=True)
     async def mute(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User,  time: int, reason: str):
         # Add muted role to user
         muted_role = inter.guild.get_role(config.MUTED_ROLE_ID)
@@ -48,7 +48,7 @@ class MuteCommands(commands.Cog):
             await inter.response.send_message("Đã có lỗi xảy ra")
         
     @commands.slash_command(description="Thả chat all")
-    @commands.has_permissions(manage_server=True)
+    @commands.has_permissions(mute_members=True)
     async def unmute(self, inter: disnake.ApplicationCommandInteraction, user: disnake.User):
         # Remove muted role from user 
         muted_role = inter.guild.get_role(config.MUTED_ROLE_ID)
