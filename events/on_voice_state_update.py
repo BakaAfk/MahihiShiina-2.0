@@ -32,7 +32,7 @@ class VoiceBotOut(commands.Cog):
         if before.channel == after.channel:
             return
 
-        if member.id == self.bot.user.id and after.channel is None:
+        if member.id == self.bot.user.id:
             return
 
         if before.channel and not after.channel:
@@ -42,9 +42,6 @@ class VoiceBotOut(commands.Cog):
         if before.channel and after.channel and before.channel != after.channel:
             await self._disconnect_if_channel_empty(member.guild, before.channel)
             return
-
-        if after.channel:
-            await self._disconnect_if_channel_empty(member.guild, after.channel)
     
 def setup(bot: commands.Bot):
-    bot.add_cog(VoiceBotOut(bot)) 
+    bot.add_cog(VoiceBotOut(bot))

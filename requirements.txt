@@ -3,9 +3,10 @@ sympy
 asyncio
 pafy
 flask
-disnake
+git+https://github.com/DisnakeDev/disnake.git          
 gtts
 pynacl
 aiohttp
 yt_dlp
 dotenv
+dave.py
