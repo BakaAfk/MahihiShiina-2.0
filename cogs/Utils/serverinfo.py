@@ -14,7 +14,9 @@ class ServerInfo(commands.Cog):
         role_count = len(inter.guild.roles)
         list_of_bots = [bot.mention for bot in inter.guild.members if bot.bot]
         # Get all roles with administrator permissions and list their members
-        staff_role = [role.id for role in inter.guild.roles if role.permissions.administrator]
+        staff_role = [role.id for role in inter.guild.roles]
+        staff_role.reverse()
+        staff_role = staff_role[:2]
         
                 
         created_at = inter.guild.created_at.timestamp()
