@@ -47,7 +47,7 @@ class Records(commands.Cog):
 			cardcode = record.get('cardcode') or 'unknown'
 			message_link = record.get('message_link', 'unknown')
 			lines.append(
-				f"- `{self._pretty_category(category)}` | User: `{userid}` | Time: `{value}` | Card: `{cardcode}` | Link: {message_link}"
+				f"- `{self._pretty_category(category)}` | User: <@`{userid}`> | Time: `{value}` | Card: `{cardcode}` | Link: {message_link}"
 			)
 
 		return "\n".join(lines) if lines else "Không có dữ liệu record server hợp lệ."
@@ -66,7 +66,7 @@ class Records(commands.Cog):
 			if not isinstance(user_records, list):
 				continue
 
-			lines.append(f"**User `{userid}`**")
+			lines.append(f"**User <@`{userid}`>**")
 			for record in user_records:
 				if not isinstance(record, dict):
 					continue
