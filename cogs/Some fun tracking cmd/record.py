@@ -47,7 +47,7 @@ class Records(commands.Cog):
 			cardcode = record.get('cardcode') or 'unknown'
 			message_link = record.get('message_link', 'unknown')
 			lines.append(
-				f"- `{self._pretty_category(category)}` | User: <@`{userid}`> | Time: `{value}` | Card: `{cardcode}` | Link: {message_link}"
+				f"- `{self._pretty_category(category)}` | User: <@{userid}> | Time: `{value}` | Card: `{cardcode}` | Link: {message_link}"
 			)
 
 		return "\n".join(lines) if lines else "Không có dữ liệu record server hợp lệ."
@@ -66,7 +66,7 @@ class Records(commands.Cog):
 			if not isinstance(user_records, list):
 				continue
 
-			lines.append(f"**User <@`{userid}`>**")
+			lines.append(f"**User <@{userid}>**")
 			for record in user_records:
 				if not isinstance(record, dict):
 					continue
@@ -75,7 +75,7 @@ class Records(commands.Cog):
 				value = record.get('value', 'unknown')
 				cardcode = record.get('cardcode') or 'unknown'
 				message_link = record.get('message_link', 'unknown')
-				lines.append(f"  - `{self._pretty_category(category)}` | Time: `{value}` | Card: `{cardcode}` | Link: {message_link}")
+				lines.append(f"- `{self._pretty_category(category)}` | Time: `{value}` | Card: `{cardcode}` | Link: {message_link}")
 
 		return "\n".join(lines) if lines else "Không có dữ liệu record user hợp lệ."
 
@@ -103,10 +103,10 @@ class Records(commands.Cog):
 				selected_user = target or inter.author
 				user_entry = self._get_user_record_entry(records, selected_user.id)
 				if user_entry is None:
-					content = f"Không có record cho user `{selected_user}`."
+					content = f"Không có record cho user <@{selected_user.id}>."
 				else:
 					content = self._format_user_records([user_entry])
-				title = f"Karuta User Record - {selected_user}"
+				title = f"Karuta User Record - <@{selected_user.id}>"
 
 			embed = disnake.Embed(title=title, description=content, color=0x00FF00)
 			await inter.response.send_message(embed=embed)
