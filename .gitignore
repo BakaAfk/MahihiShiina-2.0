@@ -60,3 +60,5 @@ Thumbs.db
 # Node
 node_modules/
 
+# Other
+KarutaRecord/

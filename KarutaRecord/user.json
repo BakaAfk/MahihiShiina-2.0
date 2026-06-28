@@ -4,9 +4,9 @@
         "record": [
             {
                 "category": "fastest_grab",
-                "value": 0.62,
-                "cardcode": "vlb8129",
-                "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1520687352605970536"
+                "value": 0.53,
+                "cardcode": "vlbth51",
+                "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1520699885224071198"
             },
             {
                 "category": "slowest_grab",
@@ -26,12 +26,14 @@
             {
                 "category": "fastest_grab",
                 "value": 0.39,
-                "cardcode": "vwf8sk7"
+                "cardcode": "vwf8sk7",
+                "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1183347988484079637"
             },
             {
                 "category": "slowest_grab",
                 "value": 0.39,
-                "cardcode": "vwf8sk7"
+                "cardcode": "vwf8sk7",
+                "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1183347988484079637"
             }
         ]
     }
