@@ -6,7 +6,16 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # Client setup
-client = commands.Bot(command_prefix='?', intents=disnake.Intents.all(), sync_commands_debug=True)
+# Tạo object flags và bật debug
+sync_flags = commands.CommandSyncFlags.default()
+sync_flags.sync_commands_debug = True
+
+# Khởi tạo bot với tham số command_sync_flags mới
+client = commands.Bot(
+    command_prefix='?', 
+    intents=disnake.Intents.all(), 
+    command_sync_flags=sync_flags
+)
 load_dotenv()
 
 # Load cogs and events
