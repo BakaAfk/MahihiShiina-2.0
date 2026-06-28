@@ -1,0 +1,20 @@
+[
+    {
+        "category": "fastest_grab",
+        "userid": 1060201579631878204,
+        "value": 0.39,
+        "cardcode": "vwf8sk7"
+    },
+    {
+        "category": "slowest_grab",
+        "userid": 1067718540221743134,
+        "value": 11.82,
+        "cardcode": "vlb81x1"
+    },
+    {
+        "category": "burn_highest",
+        "userid": 1067718540221743134,
+        "value": 6,
+        "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1520688404315246708"
+    }
+]

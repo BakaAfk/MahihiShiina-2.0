@@ -1,0 +1,38 @@
+[
+    {
+        "userid": 1067718540221743134,
+        "record": [
+            {
+                "category": "fastest_grab",
+                "value": 0.62,
+                "cardcode": "vlb8129",
+                "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1520687352605970536"
+            },
+            {
+                "category": "slowest_grab",
+                "value": 11.82,
+                "cardcode": "vlb81x1"
+            },
+            {
+                "category": "burn_highest",
+                "value": 6,
+                "message_link": "https://discord.com/channels/872692134845759508/892336371337945088/1520688404315246708"
+            }
+        ]
+    },
+    {
+        "userid": 1060201579631878204,
+        "record": [
+            {
+                "category": "fastest_grab",
+                "value": 0.39,
+                "cardcode": "vwf8sk7"
+            },
+            {
+                "category": "slowest_grab",
+                "value": 0.39,
+                "cardcode": "vwf8sk7"
+            }
+        ]
+    }
+]

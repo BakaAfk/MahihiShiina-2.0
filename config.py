@@ -27,6 +27,8 @@ DEFAULT_SETTINGS = {
 		"l truong", "l trường", "truong l", "trường l",
 	],
 	"TRUONG_COUNTER_FILE": str(Path(__file__).resolve().parent / "cogs" / "Some fun tracking cmd" / "chuitruong.txt"),
+	"SERVER_RECORD_FILE": str(Path(__file__).resolve().parent / "KarutaRecord" / "server.json"),
+	"USER_RECORD_FILE": str(Path(__file__).resolve().parent / "KarutaRecord" / "user.json"),
 }
 
 RUNTIME_SETTINGS = deepcopy(DEFAULT_SETTINGS)
